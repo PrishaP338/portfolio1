@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prisha Kannan</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    :root {
+      --bg: linear-gradient(135deg, #2b001d, #4b0034); /* Deep pink gradient */
+      --text: #fffaf0; /* Cream white */
+      --accent: #ff66b2; /* Soft rose pink */
+      --card-bg: #3b0030; /* Dark rose for cards */
+    }
+
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    header {
+      text-align: center;
+      padding: 60px 20px 40px;
+      background: linear-gradient(135deg, #4b0034, #2b001d);
+    }
+
+    header img {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      border: 3px solid var(--accent);
+      object-fit: cover;
+      box-shadow: 0 0 15px rgba(255, 102, 178, 0.5);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    header img:hover {
+      transform: scale(1.05);
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      margin: 15px 0 5px;
+      color: var(--accent);
+    }
+
+    .role {
+      display: inline-flex;
+      align-items: baseline;
+      font-weight: 600;
+      font-size: 1.1rem;
+      position: relative;
+      min-height: 1.2em;
+    }
+
+    .role::after {
+      content: "|";
+      margin-left: 4px;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .resume-btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 20px;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 25px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .resume-btn:hover {
+      background: #ff3385;
+      transform: translateY(-2px);
+    }
+
+    section {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    h2 {
+      color: var(--accent);
+      border-left: 5px solid var(--accent);
+      padding-left: 10px;
+      font-size: 1.4rem;
+      margin-bottom: 15px;
+    }
+
+    h3 {
+      color: #ffd9ec;
+      margin-top: 0;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(255, 102, 178, 0.3);
+      border: 1px solid rgba(255, 102, 178, 0.5);
+      transition: 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 12px rgba(255, 102, 178, 0.6);
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #fff;
+    }
+
+    #contact {
+      text-align: center;
+    }
+
+    #contact p {
+      font-size: 1rem;
+      color: var(--text);
+    }
+
+    .contact-grid {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 25px;
+    }
+
+    .contact-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 102, 178, 0.5);
+      padding: 18px 25px;
+      border-radius: 12px;
+      min-width: 250px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 12px;
+      transition: 0.3s ease;
+      box-shadow: 0 0 8px rgba(255, 102, 178, 0.2);
+    }
+
+    .contact-card:hover {
+      box-shadow: 0 0 12px rgba(255, 102, 178, 0.6);
+      transform: translateY(-3px);
+    }
+
+    .contact-card i {
+      font-size: 1.5rem;
+      color: var(--accent);
+      width: 25px;
+      text-align: center;
+    }
+
+    .contact-card a {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .contact-card a:hover {
+      color: var(--accent);
+    }
+
+    footer {
+      text-align: center;
+      background: #2b001d;
+      padding: 25px;
+      color: var(--text);
+      border-top: 1px solid rgba(255, 102, 178, 0.5);
+      font-size: 0.9rem;
+    }
+
+    .popup {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .popup img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(255, 102, 178, 0.6);
+      animation: zoomIn 0.4s ease;
+    }
+
+    @keyframes zoomIn {
+      from {opacity: 0; transform: scale(0.8);}
+      to {opacity: 1; transform: scale(1);}
+    }
+
+    .close {
+      position: absolute;
+      top: 20px; right: 30px;
+      color: var(--text);
+      font-size: 2rem;
+      cursor: pointer;
+    }
+
+    .close:hover {
+      color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="pr.jpg" alt="Prisha Kannan" id="profilePic" />
+    <h1>Prisha Kannan</h1>
+    <div class="role"></div>
+    <p>Coimbatore, Tamil Nadu, India</p>
+  </header>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <h3>const Prisha_Kannan = "Software Developer";</h3>
+    <p>
+      I’m a <strong>Computer Science and Engineering</strong> student at <strong>Karpagam College of Engineering</strong> (Anna University, CGPA 8.6).  
+      I am passionate about <strong>software development</strong>, <strong>machine learning</strong>, and <strong>data-driven innovation</strong>.  
+      My goal is to design scalable, intelligent systems that merge technology and creativity to solve real-world problems.
+    </p>
+  </section>
+
+  <section id="skills">
+    <h2>Technical Skills</h2>
+    <div class="card-grid">
+      <div class="card">Java / C / C++ / Python</div>
+      <div class="card">MySQL / Database Design</div>
+      <div class="card">HTML / CSS / React JS</div>
+      <div class="card">Servlet / Spring Boot</div>
+      <div class="card">TensorFlow / Machine Learning</div>
+      <div class="card">Problem Solving & Algorithms</div>
+      <div class="card">Version Control (Git / GitHub)</div>
+      <div class="card">Cloud & AI Tools (Azure, Synapse)</div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <h2>Experience</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>SWE Intern — Microsoft (Azure Networking)</h3>
+        <p><b>May 2025 – Jul 2025 | Hyderabad, India</b></p>
+        <ul>
+          <li>Designed and deployed a scalable data pipeline using Azure Synapse, Microsoft Fabric, KQL, and PySpark.</li>
+          <li>Built a production-ready analytics solution improving diagnostics and real-time data visibility.</li>
+          <li>Enhanced efficiency and decision-making for engineering and DRI teams.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>Comparative Analysis of ML Algorithms for Blood Cancer Prediction</h3>
+        <p>
+          Explored and compared SVM, Random Forest, and Neural Networks for predicting blood cancer using gene expression data.
+        </p>
+        <p><b>Tech Stack:</b> Python, Scikit-learn, Pandas, TensorFlow</p>
+      </div>
+      <div class="card">
+        <h3>Prediction of Blood Cancer using CNN</h3>
+        <p>
+          Built a CNN-based classifier using TensorFlow and Keras for cancer detection via medical image analysis with OpenCV preprocessing.
+        </p>
+        <p><b>Tech Stack:</b> Python, TensorFlow, Keras, OpenCV</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="achievements">
+    <h2>Achievements & Leadership</h2>
+    <ul>
+      <li>Microsoft Intern Hackathon – Second Runner-Up (Global)</li>
+      <li>Clash of Code – Runner-Up at Bannari Amman Institute of Technology</li>
+      <li>Membership Chair Head – Software Development Club</li>
+      <li>Active NSS Volunteer – Community Initiatives</li>
+    </ul>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Let’s connect for collaborations or opportunities.</p>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <i class="fa-solid fa-envelope"></i>
+        <a href="mailto:prishaanitha@outlook.com">prishaanitha@outlook.com</a>
+      </div>
+      <div class="contact-card">
+        <i class="fa-brands fa-linkedin"></i>
+        <a href="https://www.linkedin.com/in/prisha-kannan-05742126a/" target="_blank">linkedin.com/in/prisha-kannan-05742126a</a>
+      </div>
+      <div class="contact-card">
+        <i class="fa-brands fa-github"></i>
+        <a href="https://github.com/PrishaP338" target="_blank">github.com/PrishaP338</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 Prisha Kannan | Built with Passion 
+  </footer>
+
+  <div class="popup" id="imgPopup">
+    <span class="close" id="closePopup">&times;</span>
+    <img id="popupImg" src="" alt="Profile Large View" />
+  </div>
+
+  <script>
+    const roles = [
+      "Software Developer",
+      "Full Stack Web Developer",
+      "Machine Learning Enthusiast",
+      "Cloud & AI Intern @ Microsoft"
+    ];
+
+    const profilePic = document.getElementById("profilePic");
+    const popup = document.getElementById("imgPopup");
+    const popupImg = document.getElementById("popupImg");
+    const closePopup = document.getElementById("closePopup");
+    const roleText = document.querySelector(".role");
+
+    let roleIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+
+    function typeEffect() {
+      const current = roles[roleIndex];
+      const speed = isDeleting ? Math.random() * 50 + 30 : Math.random() * 100 + 70;
+
+      if (isDeleting) {
+        roleText.textContent = current.substring(0, charIndex - 1);
+        charIndex--;
+      } else {
+        roleText.textContent = current.substring(0, charIndex + 1);
+        charIndex++;
+      }
+
+      if (!isDeleting && charIndex === current.length) {
+        isDeleting = true;
+        setTimeout(typeEffect, 1200);
+        return;
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        roleIndex = (roleIndex + 1) % roles.length;
+        setTimeout(typeEffect, 500);
+        return;
+      }
+
+      setTimeout(typeEffect, speed);
+    }
+
+    window.addEventListener("load", typeEffect);
+
+    profilePic.addEventListener("click", () => {
+      popup.style.display = "flex";
+      popupImg.src = profilePic.src;
+    });
+
+    closePopup.addEventListener("click", () => {
+      popup.style.display = "none";
+    });
+
+    popup.addEventListener("click", (e) => {
+      if (e.target === popup) popup.style.display = "none";
+    });
+  </script>
+</body>
+</html>
